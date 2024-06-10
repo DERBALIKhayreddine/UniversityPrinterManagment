@@ -1,12 +1,24 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
     <title>Authentification</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #3E65A0; /* Setting background color */
+        }
+
+        .logo-img {
+            height: 15rem;
+        }
+    </style>
 </head>
 <body>
 
 <main>
+    <br>
+    <br>
+    <br>
     <section class="container d-flex flex-column vh-100">
         <div class="row align-items-center justify-content-center g-0 h-lg-100 py-8">
             <div class="col-lg-5 col-md-8 py-8 py-xl-0">
@@ -15,14 +27,7 @@
                     <!-- Card body -->
                     <div class="card-body p-6">
                         <div class="mb-4 text-center">
-                            <a href="../index.html"><img src="${pageContext.request.contextPath}/assets/logoISB2.png" class="mb-4 logo-img" alt="logo-icon"></a>
-
-                            <style>
-                                .logo-img {
-                                    height: 15rem;
-                                }
-
-                            </style>
+                            <a href="../index.html"><img src="${pageContext.request.contextPath}/assets/logoiit.png" class="mb-4 logo-img" alt="logo-icon"></a>
                         </div>
                         <!-- Form -->
                         <% if (request.getAttribute("errorMessage") != null) { %>
@@ -38,7 +43,7 @@
                             <!-- Password -->
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" id="password" name="password" class="form-control" name="password" placeholder="**************" required>
+                                <input type="password" id="password" name="password" class="form-control" name="password" placeholder="*******" required>
                                 <div class="invalid-feedback">Please enter valid password.</div>
                             </div>
 

@@ -1,6 +1,7 @@
 package tn.iit.projetjee.controllers;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import tn.iit.projetjee.entity.User;
 
 import java.io.IOException;
 import java.util.List;
-
+@WebServlet("/Matiere")
 public class MatiereServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private MatiereDao matiereDao;

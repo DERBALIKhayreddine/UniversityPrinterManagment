@@ -53,6 +53,7 @@
         <servlet-name>MatiereServlet</servlet-name>
         <url-pattern>/MatiereServlet</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <description></description>
         <display-name>RoleServlet</display-name>
@@ -125,12 +126,6 @@
         <servlet-name>default</servlet-name>
         <url-pattern>/uploads/*</url-pattern>
     </servlet-mapping>
-    <jsp-config>
-        <taglib>
-            <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
-            <taglib-location>/WEB-INF/lib/c.tld</taglib-location>
-        </taglib>
-    </jsp-config>
     <servlet>
         <description></description>
         <display-name>AgentCalendarServlet</display-name>

@@ -1,11 +1,7 @@
 <%@ page import="tn.iit.projetjee.entity.User" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+
 <nav class="navbar-vertical navbar">
     <%
         User userr = (User) session.getAttribute("user");
@@ -134,5 +130,3 @@
 
     </div>
 </nav>
-</body>
-</html>

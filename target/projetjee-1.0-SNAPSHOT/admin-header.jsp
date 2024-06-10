@@ -1,19 +1,10 @@
 <%@ page import="tn.iit.projetjee.entity.User" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<nav class="navbar-default navbar navbar-expand-lg">
+<nav class="navbar-default navbar navbar-expand-lg navbar-dark bg-dark">
     <a id="nav-toggle" href="#">
         <i class="fe fe-menu"></i>
     </a>
-    <div class="ms-lg-3 d-none d-md-none d-lg-block">
-        <!-- Form -->
-
-    </div>
     <!--Navbar nav -->
     <div class="ms-auto d-flex">
         <div class="dropdown">
@@ -60,13 +51,8 @@
                 <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                     <div class="avatar avatar-md avatar-indicators avatar-online">
                         <img alt="avatar" src="${pageContext.request.contextPath}/assets/images/avatar/avatar-5.jpg" class="rounded-circle" />
-
                     </div>
-
-
-
                 </a>
-
                 <div class="dropdown-menu dropdown-menu-end position-absolute mx-3 my-5">
                     <div class="dropdown-item">
                         <div class="d-flex">
@@ -81,15 +67,12 @@
                     </div>
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
-
                         <li>
                             <a class="dropdown-item" href="HomeServlet">
                                 <i class="fe fe-home me-2"></i>
                                 Home
                             </a>
                         </li>
-
-
                     </ul>
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
@@ -101,11 +84,10 @@
                         </li>
                     </ul>
                 </div>
-
             </li>
             <li><h5 class="mx-2" style="margin-top:10px">${user.getNom()} ${user.getPrenom()}</h5></li>
         </ul>
     </div>
 </nav>
-</body>
-</html>
+
+
