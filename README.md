@@ -45,7 +45,6 @@ Ces technologies garantissent une application robuste et performante.
    git clone https://github.com/votre-utilisateur/gestion-impression.git](https://github.com/DERBALIKhayreddine/UniversityPrinterManagment
 
 ## interfaces 
-![Page D'acceuil]([https://url-to-image.com/image.jpg](https://github.com/DERBALIKhayreddine/UniversityPrinterManagment/blob/main/capture%20projet%20jee/acceuil.png))
-![Page Login](capture projet jee/login.png)
+![Acceuil](capture%20projet%20jee/acceuil.png)
 
 
