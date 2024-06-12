@@ -46,6 +46,6 @@ Ces technologies garantissent une application robuste et performante.
 
 ## interfaces 
 ![Page D'acceuil]([https://url-to-image.com/image.jpg](https://github.com/DERBALIKhayreddine/UniversityPrinterManagment/blob/main/capture%20projet%20jee/acceuil.png))
-![Page Login]([https://url-to-image.com/image.jpg](https://github.com/DERBALIKhayreddine/UniversityPrinterManagment/blob/main/capture%20projet%20jee/login.png))
+![Page Login](capture projet jee/login.png)
 
 
