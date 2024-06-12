@@ -18,7 +18,7 @@
             position: fixed;
             height: 100%;
             width: 250px;
-            background-color: #3E65A0;
+            background-color: #343a40;
             color: white;
         }
         .nav-item {
@@ -38,7 +38,7 @@
 <script src="https://kit.fontawesome.com/ab18cab0ff.js" crossorigin="anonymous"></script>
 
 <!-- Sidebar -->
-<nav class="navbar-vertical navbar">
+<nav class="navbar-vertical navbar" style="color:black;">
     <%
         User userr = (User) session.getAttribute("user");
     %>
@@ -96,7 +96,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("enseignant")) { %>
+            <% if ( userr.getRole().equals("enseignant")) { %>
             <li class="nav-item">
                 <a class="nav-link" href="usermatiere">
                     <span>
@@ -125,7 +125,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("agent")) { %>
+            <% if ( userr.getRole().equals("agent")) { %>
             <!-- Nav item -->
             <li class="nav-item">
                 <a class="nav-link" href="AgentImpression">
@@ -152,12 +152,11 @@
     </div>
 </nav>
 <!-- Page Content -->
-
-<!-- Page Content -->
 <main id="page-content">
-    <header class="p-3">
+    <header class="p-3 ">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <!-- Left side: Avatar and Email -->
                 <div class="d-flex align-items-center">
                     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                         <div class="avatar avatar-md avatar-indicators avatar-online">
@@ -169,14 +168,14 @@
                             <%
                                 User user = (User) session.getAttribute("user");
                             %>
-                            <span class="nav-link text-black"><%= user.getEmail() %></span>
+                            <span class="nav-link text-black" style="color: black">
+                            <%= user.getEmail() %>
+                        </span>
                         </li>
                     </ul>
                 </div>
+                <!-- Right side: Search and Sign-up -->
                 <div class="d-flex align-items-center">
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                    </form>
                     <div class="text-end">
                         <a href="LogoutServlet"><button type="button" class="btn btn-warning">Log out</button></a>
                     </div>

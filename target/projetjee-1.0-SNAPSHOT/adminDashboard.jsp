@@ -18,7 +18,7 @@
             position: fixed;
             height: 100%;
             width: 250px;
-            background-color: #3E65A0;
+            background-color: #343a40;
             color: white;
         }
         .nav-item {
@@ -38,7 +38,7 @@
 <script src="https://kit.fontawesome.com/ab18cab0ff.js" crossorigin="anonymous"></script>
 
 <!-- Sidebar -->
-<nav class="navbar-vertical navbar">
+<nav class="navbar-vertical navbar" style="color:black;">
     <%
         User userr = (User) session.getAttribute("user");
     %>
@@ -96,7 +96,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("enseignant")) { %>
+            <% if ( userr.getRole().equals("enseignant")) { %>
             <li class="nav-item">
                 <a class="nav-link" href="usermatiere">
                     <span>
@@ -116,7 +116,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="impressionlist.jsp">
+                <a class="nav-link" href="ImpressionListServlet">
                     <span>
                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4"/><path d="M5 18h1.5a1.5 0 0 0 0 -3h-1.5v6"/><path d="M17 18h2"/><path d="M20 15h-3v6"/><path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z"/></svg>
                     </span>
@@ -125,7 +125,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("agent")) { %>
+            <% if ( userr.getRole().equals("agent")) { %>
             <!-- Nav item -->
             <li class="nav-item">
                 <a class="nav-link" href="AgentImpression">
@@ -168,18 +168,14 @@
                             <%
                                 User user = (User) session.getAttribute("user");
                             %>
-                            <span class="nav-link text-black">
+                            <span class="nav-link text-black" style="color: black">
                             <%= user.getEmail() %>
                         </span>
                         </li>
                     </ul>
                 </div>
-
                 <!-- Right side: Search and Sign-up -->
                 <div class="d-flex align-items-center">
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                    </form>
                     <div class="text-end">
                         <a href="LogoutServlet"><button type="button" class="btn btn-warning">Log out</button></a>
                     </div>
@@ -191,149 +187,80 @@
     <!-- Container fluid -->
     <section class="container-fluid p-4">
         <div class="row">
-            <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-12">
                 <!-- Card -->
-                <div class="card mb-4">
+                <div class="card mb-4" style="background-color: #343a40;">
                     <!-- Card body -->
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <div class="d-flex align-items-center justify-content-between mb-3 lh-1">
                             <div>
-                                <span class="fs-6 text-uppercase fw-semibold ls-md">Total Enseignants</span>
+                                <span class="fs-6 text-uppercase fw-semibold ls-md text-white">Total Enseignants</span>
                             </div>
                             <div>
                                 <span class="fa-solid fa-person-chalkboard fs-3 text-primary"></span>
                             </div>
                         </div>
-                        <h2 class="fw-bold mb-1">${totalEnseignants}</h2>
+                        <h2 class="fw-bold mb-1 display-4 text-white">${totalEnseignants}</h2>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-12">
                 <!-- Card -->
-                <div class="card mb-4">
+                <div class="card mb-4" style="background-color: #343a40;">
                     <!-- Card body -->
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <div class="d-flex align-items-center justify-content-between mb-3 lh-1">
                             <div>
-                                <span class="fs-6 text-uppercase fw-semibold ls-md">Total Agents</span>
+                                <span class="fs-6 text-uppercase fw-semibold ls-md text-white">Total Agents</span>
                             </div>
                             <div>
                                 <span class="fa-solid fa-chalkboard-user fs-3 text-primary"></span>
                             </div>
                         </div>
-                        <h2 class="fw-bold mb-1">${totalAgents}</h2>
+                        <h2 class="fw-bold mb-1 display-4 text-white">${totalAgents}</h2>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-12">
                 <!-- Card -->
-                <div class="card mb-4">
+                <div class="card mb-4" style="background-color: #343a40;">
                     <!-- Card body -->
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <div class="d-flex align-items-center justify-content-between mb-3 lh-1">
                             <div>
-                                <span class="fs-6 text-uppercase fw-semibold ls-md">Students</span>
+                                <span class="fs-6 text-uppercase fw-semibold ls-md text-white">Students</span>
                             </div>
                             <div>
                                 <span class="fa-solid fa-user-graduate fs-3 text-primary"></span>
                             </div>
                         </div>
-                        <h2 class="fw-bold mb-1">${totalStudents}</h2>
+                        <h2 class="fw-bold mb-1 display-4 text-white">${totalStudents}</h2>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-12">
                 <!-- Card -->
-                <div class="card mb-4">
+                <div class="card mb-4" style="background-color: #343a40;">
                     <!-- Card body -->
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <div class="d-flex align-items-center justify-content-between mb-3 lh-1">
                             <div>
-                                <span class="fs-6 text-uppercase fw-semibold ls-md">Total Groups</span>
+                                <span class="fs-6 text-uppercase fw-semibold ls-md text-white">Total Groups</span>
                             </div>
                             <div>
                                 <span class="fa-solid fa-people-group fs-3 text-primary"></span>
                             </div>
                         </div>
-                        <h2 class="fw-bold mb-1">${totalGroups}</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                <!-- Card -->
-                <div class="card mb-4">
-                    <!-- Card header -->
-                    <div class="card-header align-items-center card-header-height d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4 class="mb-0">Impressions par mois</h4>
-                        </div>
-                    </div>
-                    <!-- Card body -->
-                    <div class="card-body">
-                        <!-- Earning chart -->
-                        <div id="impressionsChart" class="apex-charts"></div>
+                        <h2 class="fw-bold mb-1 display-4 text-white">${totalGroups}</h2>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
 </main>
 
-<script src="${pageContext.request.contextPath}/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-<script>
-    var impressionsByMonthJson = '${impressionsByMonthJson}';
 
-    if (impressionsByMonthJson && impressionsByMonthJson !== "") {
-        var impressionsByMonth = JSON.parse(impressionsByMonthJson);
-        var seriesData = [];
-
-        for (var i = 0; i < impressionsByMonth.length; i++) {
-            var monthData = impressionsByMonth[i];
-            seriesData.push({
-                x: new Date(2024, monthData["month"], 1),
-                y: monthData["count"]
-            });
-        }
-
-        var options = {
-            series: [{
-                name: "Impressions",
-                data: seriesData
-            }],
-            chart: {
-                type: 'area',
-                height: 350,
-                zoom: {
-                    enabled: false
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                curve: 'straight'
-            },
-            xaxis: {
-                type: 'datetime',
-                labels: {
-                    format: 'MMM yyyy'
-                }
-            },
-            yaxis: {
-                opposite: true
-            },
-            legend: {
-                horizontalAlign: 'left'
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#impressionsChart"), options);
-        chart.render();
-    } else {
-        console.error("impressionsByMonthJson is empty");
-    }
-</script>
 </body>
 </html>

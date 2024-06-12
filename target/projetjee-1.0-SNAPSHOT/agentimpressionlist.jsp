@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
         .logo-img {
             height: 3rem;
@@ -17,7 +19,7 @@
             position: fixed;
             height: 100%;
             width: 250px;
-            background-color: #3E65A0;
+            background-color: #343a40;
             color: white;
         }
         .nav-item {
@@ -37,14 +39,14 @@
 <script src="https://kit.fontawesome.com/ab18cab0ff.js" crossorigin="anonymous"></script>
 
 <!-- Sidebar -->
-<nav class="navbar-vertical navbar">
+<nav class="navbar-vertical navbar" style="color:black;">
     <%
         User userr = (User) session.getAttribute("user");
     %>
     <div class="vh-100" data-simplebar>
         <!-- Brand logo -->
         <a class="navbar-brand" href="HomeServlet" style="color: white">
-            <h5 >Printer managment IIT </h5>
+            <h5>Printer management IIT</h5>
         </a>
 
         <!-- Navbar nav -->
@@ -63,17 +65,14 @@
                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"/><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M17 10h2a2 2 0 0 1 2 2v1"/><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M3 13v-1a2 2 0 0 1 2 -2h2"/></svg>
                    Gestion Utilisateurs
                     </span>
-
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="RoleServlet">
-
                      <span>
                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"/><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M17 10h2a2 2 0 0 1 2 2v1"/><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M3 13v-1a2 2 0 0 1 2 -2h2"/></svg>
                      Gestion Roles
                     </span>
-
                 </a>
             </li>
             <!-- Nav item -->
@@ -95,7 +94,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("enseignant")) { %>
+            <% if ( userr.getRole().equals("enseignant")) { %>
             <li class="nav-item">
                 <a class="nav-link" href="usermatiere">
                     <span>
@@ -124,7 +123,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("agent")) { %>
+            <% if ( userr.getRole().equals("agent")) { %>
             <!-- Nav item -->
             <li class="nav-item">
                 <a class="nav-link" href="AgentImpression">
@@ -167,18 +166,14 @@
                             <%
                                 User user = (User) session.getAttribute("user");
                             %>
-                            <span class="nav-link text-black">
+                            <span class="nav-link text-black" style="color: black">
                             <%= user.getEmail() %>
                         </span>
                         </li>
                     </ul>
                 </div>
-
                 <!-- Right side: Search and Sign-up -->
                 <div class="d-flex align-items-center">
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                    </form>
                     <div class="text-end">
                         <a href="LogoutServlet"><button type="button" class="btn btn-warning">Log out</button></a>
                     </div>
@@ -186,145 +181,92 @@
             </div>
         </div>
     </header>
-        <section class="container-fluid p-4">
-            <div class="row">
-                <!-- Page Header -->
-                <div class="col-lg-12 col-md-12 col-12">
-                    <div class="border-bottom pb-3 mb-3 d-flex align-items-center justify-content-between">
-                        <div>
-                            <h1 class="mb-1 h2 fw-bold">Liste des Impressions</h1>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="admin-dashboard.html">Dashboard</a>
-                                    </li>
-
-                                    <li class="breadcrumb-item active" aria-current="page">Liste des Impressions</li>
-                                </ol>
-                            </nav>
-                        </div>
-
-                        <div>
-
-                        </div>
-                        <div class="text-end">
-                            <a href="agentimpressionslog" class="btn btn-primary">Historique</a>
-                            <a href="AgentCalendarServlet" class="btn btn-primary">Voir le calendrier</a>
-                        </div>
+    <section class="container-fluid p-4">
+        <div class="row">
+            <!-- Page Header -->
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="border-bottom pb-3 mb-3 d-flex align-items-center justify-content-between">
+                    <div>
+                        <h1 class="mb-1 h2 fw-bold">Liste des Impressions</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="admin-dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Liste des Impressions</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div></div>
+                    <div class="text-end">
+                        <a href="AgentCalendarServlet" class="btn btn-primary">Voir le calendrier</a>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <!-- basic table -->
-                <div class="col-md-12 col-12 mb-5">
-                    <div class="card">
-
-                        <div class="card-body">
-                            <div class="table-card">
-                                <table id="dataTableBasic" class="table table-hover" style="width: 100%">
-                                    <thead class="table-light">
+        </div>
+        <div class="row">
+            <!-- basic table -->
+            <div class="col-md-12 col-12 mb-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-card">
+                            <table id="dataTableBasic" class="table table-hover" style="width: 100%">
+                                <thead class="table-light">
+                                <tr>
+                                    <th>Détails</th>
+                                    <th>Enseignant</th>
+                                    <th>Groupe</th>
+                                    <th>État</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${impressions}" var="impression">
                                     <tr>
-                                        <th>Détails</th>
-                                        <th>Enseignant</th>
-                                        <th>Groupe</th>
-
-
-                                        <th>Jours restants</th>
-
-                                        <th>État</th>
-
-                                        <th>Actions</th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${impressions}" var="impression">
-                                        <tr>
-                                            <td>
-
-                                                <a href="#" class="text-inherit">
-                                                    <div class="d-flex align-items-center">
-                                                        <div>
-                                                            <img src="${pageContext.request.contextPath}/assets/pdfimg.png" alt="" class="img-4by3-lg rounded">
-                                                        </div>
-                                                        <div class="ms-3">
-                                                            <h4 class="mb-1 text-primary-hover">${impression.nombreDePages} pages pour la matiere ${impression.matiereNom}</h4>
-                                                            <span>${impression.dateImpression}</span>
-                                                        </div>
+                                        <td>
+                                            <a href="#" class="text-inherit">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <img src="${pageContext.request.contextPath}/assets/pdfimg.png" alt="" class="img-4by3-lg rounded">
                                                     </div>
-                                                </a>
-                                            </td>
-                                            <td>${impression.enseignantNom}</td>
-                                            <td>${impression.groupeNom}</td>
-
-
-
-                                            <td>
-                                                <c:set var="today" value="<%= new java.util.Date() %>" />
-
-                                                <c:set var="dateFormat" value="<%= new java.text.SimpleDateFormat(\"yyyy-MM-dd\") %>" />
-                                                <c:set var="dateImpression" value="${dateFormat.parse(impression.dateImpression)}" />
-                                                <c:set var="joursRestants" value="${(dateImpression.time - today.time) / (1000 * 60 * 60 * 24)}" />
-
-                                                <c:set var="joursRestantsInt" value="${joursRestants.intValue()}" />
-
-                                                    ${joursRestantsInt} jour(s) restant(s)
-
-
-
-
-
-
-
-
-
-                                            </td>
-
-                                            <td>
-                                                <c:if test="${impression.etat eq 'En attente'}">
-                                                <span class="badge bg-info-soft">${impression.etat}</span>
-                                                </c:if>
-                                                <c:if test="${impression.etat ne 'En attente'}">
-                                                <span class="badge bg-danger">${impression.etat}</span>
-                                                </c:if>
-
-
-                                            <td>
-                                                <div class="col-md-12 row">
-                                                    <div class="col-md-6">
-                                                        <a class="btn btn-secondary btn-sm mx-2" href="agentimpressions?action=imprime&id=${impression.id}">
-                                                            <span class="fe fe-download "></span>
-                                                            Imprimer
-                                                        </a>
+                                                    <div class="ms-3">
+                                                        <h5 class="mb-1 text-primary-hover">${impression.nombreDePages} pages pour la matiere ${impression.matiereNom}</h5>
+                                                        <small>${impression.dateImpression}</small>
                                                     </div>
-                                                    <div class="col-md-6">
-
-
-                                                        <a class="btn btn-danger btn-sm"  onclick="openDeleteConfirmation(${impression.id})">
-                                                            <i class="fe fe-trash "></i>
-                                                            Supprimer
-                                                        </a>
-                                                    </div>
-
-
                                                 </div>
-
-                                            </td>
-
-
-                                        </tr>
-                                    </c:forEach>
-
-                                    </tbody>
-                                </table>
-                            </div>
+                                            </a>
+                                        </td>
+                                        <td>${impression.enseignantNom}</td>
+                                        <td>${impression.groupeNom}</td>
+                                        <td>
+                                            <c:if test="${impression.etat eq 'En attente'}">
+                                                <span class="badge bg-info-soft">${impression.etat}</span>
+                                            </c:if>
+                                            <c:if test="${impression.etat ne 'En attente'}">
+                                                <span class="badge bg-danger">${impression.etat}</span>
+                                            </c:if>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex justify-content-between">
+                                                <a class="btn btn-secondary btn-sm me-2" href="agentimpressions?action=imprime&id=${impression.id}">
+                                                    <span class="fe fe-download"></span> Imprimer
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" onclick="openDeleteConfirmation(${impression.id})">
+                                                    <i class="fe fe-trash"></i> Supprimer
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 </div>
 <div class="modal fade" id="deleteConfirmation" tabindex="-1" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -344,14 +286,45 @@
     </div>
 </div>
 
-
-
 <script>
     function openDeleteConfirmation(id) {
         var deleteUserLink = document.getElementById('deleteUserLink');
         deleteUserLink.href = "agentimpressions?action=delete&id=" + id;
         $('#deleteConfirmation').modal('show');
     }
+
+    function showToastr(message, type) {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        if(type === 'success') {
+            toastr.success(message);
+        } else if(type === 'error') {
+            toastr.error(message);
+        } else if(type === 'warning') {
+            toastr.warning(message);
+        } else if(type === 'info') {
+            toastr.info(message);
+        }
+    }
+
+
+
 </script>
 </body>
 </html>

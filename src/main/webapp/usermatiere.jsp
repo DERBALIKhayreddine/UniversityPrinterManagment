@@ -18,7 +18,7 @@
             position: fixed;
             height: 100%;
             width: 250px;
-            background-color: #3E65A0;
+            background-color: #343a40;
             color: white;
         }
         .nav-item {
@@ -38,7 +38,7 @@
 <script src="https://kit.fontawesome.com/ab18cab0ff.js" crossorigin="anonymous"></script>
 
 <!-- Sidebar -->
-<nav class="navbar-vertical navbar">
+<nav class="navbar-vertical navbar" style="color:black;">
     <%
         User userr = (User) session.getAttribute("user");
     %>
@@ -96,7 +96,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("enseignant")) { %>
+            <% if ( userr.getRole().equals("enseignant")) { %>
             <li class="nav-item">
                 <a class="nav-link" href="usermatiere">
                     <span>
@@ -125,7 +125,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("agent")) { %>
+            <% if ( userr.getRole().equals("agent")) { %>
             <!-- Nav item -->
             <li class="nav-item">
                 <a class="nav-link" href="AgentImpression">
@@ -168,18 +168,14 @@
                             <%
                                 User user = (User) session.getAttribute("user");
                             %>
-                            <span class="nav-link text-black">
+                            <span class="nav-link text-black" style="color: black">
                             <%= user.getEmail() %>
                         </span>
                         </li>
                     </ul>
                 </div>
-
                 <!-- Right side: Search and Sign-up -->
                 <div class="d-flex align-items-center">
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                    </form>
                     <div class="text-end">
                         <a href="LogoutServlet"><button type="button" class="btn btn-warning">Log out</button></a>
                     </div>
@@ -193,7 +189,7 @@
                 <div class="col-lg-12 col-md-12 col-12">
                     <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
                         <div class="mb-3 mb-md-0">
-                            <h1 class="mb-1 h2 fw-bold">Selectioné les matieres</h1>
+                            <h1 class="mb-1 h2 fw-bold">Sélectionnez la matière que vous enseignez.</h1>
                             <!-- Breadcrumb -->
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -201,7 +197,7 @@
                                         <a href="admin-dashboard.html">Dashboard</a>
                                     </li>
 
-                                    <li class="breadcrumb-item active" aria-current="page">Selectioné les matieres</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Sélectionnez la matière que vous enseignez.</li>
                                 </ol>
                             </nav>
                         </div>
@@ -215,48 +211,35 @@
                     <div class="card border-0 mb-4">
                         <!-- Card header -->
                         <div class="card-header">
-                            <h4 class="mb-0">Select matiere</h4>
+                            <h4 class="mb-0">Sélectionnez la matière que vous enseignez.</h4>
 
 
                         </div>
-                        <form action="usermatiere" method="post" class="needs-validation" novalidate>
+                        <form action="usermatiere" method="post" class="needs-validation" novalidate onsubmit="showToastr('Enregistrement réussi!', 'success'); return false;">
                             <!-- Card body -->
                             <div class="card-body">
-
-                                <!-- Add the "Upload" button -->
-                                <div class="mt-4">
-                                    <!-- Form -->
-                                    <div class="row">
-                                        <!-- Date -->
-                                        <input type="hidden" name="action" value="add">
-                                        <div class="mb-3 col-md-12">
-                                            <!-- Title -->
-
-                                            <c:forEach var="matiere" items="${matieres}">
-                                                <%--@declare id="flexcheckdefault"--%><input type="checkbox" class="form-check-input fs-3" name="subject" value="${matiere.id}" ${matiereIds.contains(matiere.id) ? 'checked' : ''}>
-                                                <label class="form-check-label fs-3" for="flexCheckDefault">
-                                                        ${matiere.nom}
-                                                </label>
-                                                <br>
-                                            </c:forEach>
-
-
-
-
-
-
-                                        </div>
-
-
-
-
-                                    </div>
-                                </div>
-                                <!-- Editor -->
-
-                                <!-- button -->
-                                <button type="submit" class="btn btn-primary">Enregister</button>
-
+                                <input type="hidden" name="action" value="add">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Sélectionner</th>
+                                        <th>Matière</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="matiere" items="${matieres}">
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" class="form-check-input" name="subject" value="${matiere.id}" ${matiereIds.contains(matiere.id) ? 'checked' : ''}>
+                                            </td>
+                                            <td>
+                                                    ${matiere.nom}
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
                             </div>
                         </form>
                     </div>

@@ -5,42 +5,40 @@
 <html>
 <head>
     <title>Demande Tirage</title>
-</head>
-<body>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<style>
-    .logo-img {
-        height: 3rem;
-        position: relative;
-        align-items: center;
-    }
-    .navbar-vertical {
-        position: fixed;
-        height: 100%;
-        width: 250px;
-        background-color: #3E65A0;
-        color: white;
-    }
-    .nav-item {
-        color: white;
-    }
-    .nav-item a {
-        color: white !important;
-        text-decoration: none; /* To remove underline */
-    }
-    #page-content {
-        margin-left: 250px;
-        padding: 20px;
-    }
-</style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .logo-img {
+            height: 3rem;
+            position: relative;
+            align-items: center;
+        }
+        .navbar-vertical {
+            position: fixed;
+            height: 100%;
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+        }
+        .nav-item {
+            color: white;
+        }
+        .nav-item a {
+            color: white !important;
+            text-decoration: none; /* To remove underline */
+        }
+        #page-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
 <script src="https://kit.fontawesome.com/ab18cab0ff.js" crossorigin="anonymous"></script>
 
 <!-- Sidebar -->
-<nav class="navbar-vertical navbar">
+<nav class="navbar-vertical navbar" style="color:black;">
     <%
         User userr = (User) session.getAttribute("user");
     %>
@@ -98,7 +96,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("enseignant")) { %>
+            <% if ( userr.getRole().equals("enseignant")) { %>
             <li class="nav-item">
                 <a class="nav-link" href="usermatiere">
                     <span>
@@ -127,7 +125,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("agent")) { %>
+            <% if ( userr.getRole().equals("agent")) { %>
             <!-- Nav item -->
             <li class="nav-item">
                 <a class="nav-link" href="AgentImpression">
@@ -170,18 +168,14 @@
                             <%
                                 User user = (User) session.getAttribute("user");
                             %>
-                            <span class="nav-link text-black">
+                            <span class="nav-link text-black" style="color: black">
                             <%= user.getEmail() %>
                         </span>
                         </li>
                     </ul>
                 </div>
-
                 <!-- Right side: Search and Sign-up -->
                 <div class="d-flex align-items-center">
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                    </form>
                     <div class="text-end">
                         <a href="LogoutServlet"><button type="button" class="btn btn-warning">Log out</button></a>
                     </div>
@@ -189,100 +183,103 @@
             </div>
         </div>
     </header>
-        <section class="container-fluid p-4">
-            <div class="row">
-                <!-- Page header -->
-                <div class="col-lg-12 col-md-12 col-12">
-                    <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
-                        <div class="mb-3 mb-md-0">
-                            <h1 class="mb-1 h2 fw-bold">Demande Tirage</h1>
-                            <!-- Breadcrumb -->
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="admin-dashboard.html">Dashboard</a>
-                                    </li>
-
-                                    <li class="breadcrumb-item active" aria-current="page">Demande Tirage</li>
-                                </ol>
-                            </nav>
-                        </div>
-
+    <section class="container-fluid p-4">
+        <div class="row">
+            <!-- Page header -->
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
+                    <div class="mb-3 mb-md-0">
+                        <h1 class="mb-1 h2 fw-bold">Demande Tirage</h1>
+                        <!-- Breadcrumb -->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="admin-dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Demande Tirage</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                    <!-- Card -->
-                    <div class="card border-0 mb-4">
-                        <!-- Card header -->
-                        <div class="card-header">
-                            <h4 class="mb-0">Demande Tirage</h4>
-                        </div>
-                        <form  class="needs-validation" novalidate action="Impression" method="post" enctype="multipart/form-data">
-                            <!-- Card body -->
-                            <div class="card-body">
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                <!-- Card -->
+                <div class="card border-0 mb-4">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h4 class="mb-0">Demande Tirage</h4>
+                    </div>
+                    <form class="needs-validation" novalidate action="Impression" method="post" enctype="multipart/form-data">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <!-- Form -->
+                            <div class="row">
+                                <!-- Hidden action input -->
+                                <input type="hidden" name="action" value="add">
 
-                                <!-- Add the "Upload" button -->
-                                <div class="mt-4">
-                                    <!-- Form -->
-                                    <div class="row">
-                                        <!-- Date -->
-                                        <input type="hidden" name="action" value="add">
-                                        <div class="mb-3 col-md-12">
-                                            <!-- Title -->
-                                            <label for="postTitle" class="form-label">Groupe</label>
-                                            <select name="groupe" id="groupe" class="form-select">
-                                                <c:forEach items="${groups}" var="group" >
-                                                    <option value="${group.id}">${group.nom} - ${group.nbetudiants} étudiants</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3 col-md-12">
-                                            <!-- Title -->
-                                            <label for="postTitle" class="form-label">Matière</label>
-                                            <select name="matiere" id="matiere" class="form-select">
-                                                <c:forEach items="${matieres}" var="matiere">
-                                                    <option value="${matiere.id}">${matiere.nom}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-
-                                        <div class=" col-md-12">
-                                            <!-- Title -->
-                                            <label for="dateImpression">Date d'impression:</label>
-                                            <input type="date" name="dateImpression" id="dateImpression" class="form-control">
-                                        </div>
-
-                                        <div class="mb-3 col-md-12 d-block">
-
-                                            <label for="document">Document:</label>
-                                            <input type="file" name="document" id="document" class="dropzone mt-4 border-dashed rounded-2 w-100">
-
-                                        </div>
-
-
-                                        <!-- Slug -->
-
-
-
+                                <!-- Groupe -->
+                                <div class="mb-3 col-md-12">
+                                    <label for="groupe" class="form-label">Groupe</label>
+                                    &nbsp;
+                                    <select name="groupe" id="groupe" class="form-select form-select-lg" aria-label="Default select example" required>
+                                        <option >sélectionner un groupe  </option>
+                                        <c:forEach items="${groups}" var="group">
+                                            <option value="${group.id}">${group.nom} - ${group.nbetudiants} étudiants</option>
+                                        </c:forEach>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Veuillez sélectionner un groupe.
                                     </div>
                                 </div>
-                                <!-- Editor -->
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary">Enregister</button>
+
+                                <!-- Matière -->
+                                <div class="mb-3 col-md-12">
+                                    <label for="matiere" class="form-label">Matière</label>
+                                    &nbsp;
+                                    <select name="matiere" id="matiere" class="form-select form-select-lg" aria-label="Default select example" required>
+                                        <option >sélectionner une matière.</option>
+                                        <c:forEach items="${matieres}" var="matiere">
+                                            <option value="${matiere.id}">${matiere.nom}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Veuillez sélectionner une matière.
+                                    </div>
                                 </div>
-                                <!-- button -->
 
+                                <!-- Date d'impression -->
+                                <div class="mb-3 col-md-12">
+                                    <label for="dateImpression" class="form-label">Date d'impression:</label>
+                                    <input type="date" name="dateImpression" id="dateImpression" class="form-control" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez sélectionner une date.
+                                    </div>
+                                </div>
 
+                                <!-- Document -->
+                                <div class="mb-3 col-md-12">
+                                    <label for="document" class="form-label">Document:</label>
+                                    <input type="file" name="document" id="document" class="form-control form-control-lg" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez télécharger un document.
+                                    </div>
+                                </div>
                             </div>
-                        </form>
-                    </div>
+
+                            <!-- Submit button -->
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Enregister</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+    </section>
+</main>
 </div>
 </body>
 </html>

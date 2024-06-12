@@ -96,6 +96,16 @@
     </servlet-mapping>
     <servlet>
         <description></description>
+        <display-name>ImpressionListServlet</display-name>
+        <servlet-name>ImpressionListServlet</servlet-name>
+        <servlet-class>tn.iit.projetjee.controllers.ImpressionListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImpressionListServlet</servlet-name>
+        <url-pattern>/ImpressionListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <description></description>
         <display-name>AgentImpression</display-name>
         <servlet-name>AgentImpression</servlet-name>
         <servlet-class>tn.iit.projetjee.controllers.AgentImpression</servlet-class>

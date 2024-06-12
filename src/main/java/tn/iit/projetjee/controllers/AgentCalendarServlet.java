@@ -27,9 +27,7 @@ public class AgentCalendarServlet extends HttpServlet {
 
     public AgentCalendarServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -37,8 +35,6 @@ public class AgentCalendarServlet extends HttpServlet {
             User user = (User) session.getAttribute("user");
 
             if (user != null) {
-                int idEnseignant = user.getUserId();
-
                 List<Impression> impressions = impressionDao.getAllImpressions();
 
                 StringBuilder eventsJson = new StringBuilder("[");
@@ -52,16 +48,13 @@ public class AgentCalendarServlet extends HttpServlet {
                             + " pour la matiere "
                             + impression.getMatiereNom()
                             + "\",");
-
                     eventsJson.append("\"start\": \"" + dateFormat.format(impression.getDateImpression()) + "\"");
                     eventsJson.append("},");
                 }
-                // Remove the last comma
                 if (impressions.size() > 0) {
                     eventsJson.deleteCharAt(eventsJson.length() - 1);
                 }
                 eventsJson.append("]");
-
 
                 request.setAttribute("eventsJson", eventsJson.toString());
                 request.getRequestDispatcher("calendar.jsp").forward(request, response);
@@ -73,12 +66,7 @@ public class AgentCalendarServlet extends HttpServlet {
         }
     }
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         doGet(request, response);
     }
-
-
-
 }

@@ -20,7 +20,7 @@
             position: fixed;
             height: 100%;
             width: 250px;
-            background-color: #3E65A0;
+            background-color: #343a40;
             color: white;
         }
         .nav-item {
@@ -34,41 +34,20 @@
             margin-left: 250px;
             padding: 20px;
         }
-
-         .form-control,
-         .form-select,
-         .form-check-input {
-             width: 100%;
-             margin-bottom: 15px;
-         }
-
-        .form-label {
-            margin-bottom: 5px;
-        }
-
-        .card-body .row {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .text-end {
-            margin-top: 15px;
-        }
-
     </style>
 </head>
 <body>
 <script src="https://kit.fontawesome.com/ab18cab0ff.js" crossorigin="anonymous"></script>
 
 <!-- Sidebar -->
-<nav class="navbar-vertical navbar">
+<nav class="navbar-vertical navbar" style="color:black;">
     <%
         User userr = (User) session.getAttribute("user");
     %>
     <div class="vh-100" data-simplebar>
         <!-- Brand logo -->
         <a class="navbar-brand" href="HomeServlet" style="color: white">
-            <h5>Printer Management IIT</h5>
+            <h5 >Printer managment IIT </h5>
         </a>
 
         <!-- Navbar nav -->
@@ -83,20 +62,24 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="AdminServlet">
-                    <span>
+                     <span>
                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"/><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M17 10h2a2 2 0 0 1 2 2v1"/><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M3 13v-1a2 2 0 0 1 2 -2h2"/></svg>
                    Gestion Utilisateurs
                     </span>
+
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="RoleServlet">
-                    <span>
+
+                     <span>
                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"/><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M17 10h2a2 2 0 0 1 2 2v1"/><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M3 13v-1a2 2 0 0 1 2 -2h2"/></svg>
                      Gestion Roles
                     </span>
+
                 </a>
             </li>
+            <!-- Nav item -->
             <li class="nav-item">
                 <a class="nav-link" href="MatiereServlet">
                     <span>
@@ -115,7 +98,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("enseignant")) { %>
+            <% if ( userr.getRole().equals("enseignant")) { %>
             <li class="nav-item">
                 <a class="nav-link" href="usermatiere">
                     <span>
@@ -144,7 +127,7 @@
             </li>
             <% } %>
 
-            <% if (userr.getRole().equals("admin") || userr.getRole().equals("agent")) { %>
+            <% if ( userr.getRole().equals("agent")) { %>
             <!-- Nav item -->
             <li class="nav-item">
                 <a class="nav-link" href="AgentImpression">
@@ -172,7 +155,7 @@
 </nav>
 <!-- Page Content -->
 <main id="page-content">
-    <header class="p-3">
+    <header class="p-3 ">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-between">
                 <!-- Left side: Avatar and Email -->
@@ -187,18 +170,14 @@
                             <%
                                 User user = (User) session.getAttribute("user");
                             %>
-                            <span class="nav-link text-black">
+                            <span class="nav-link text-black" style="color: black">
                             <%= user.getEmail() %>
                         </span>
                         </li>
                     </ul>
                 </div>
-
                 <!-- Right side: Search and Sign-up -->
                 <div class="d-flex align-items-center">
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                    </form>
                     <div class="text-end">
                         <a href="LogoutServlet"><button type="button" class="btn btn-warning">Log out</button></a>
                     </div>

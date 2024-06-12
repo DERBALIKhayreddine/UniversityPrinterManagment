@@ -12,7 +12,7 @@ import java.util.*;
 public class ImpressionDaoImp implements ImpressionDao {
 
     private static final String SELECT_IMPRESSION_BY_ID = "SELECT * FROM impressions WHERE id=?";
-    private static final String INSERT_IMPRESSION = "INSERT INTO impressions (id_enseignant, id_groupe, id_matiere, date_impression, document, etat, nombreDePages) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_IMPRESSION = "INSERT INTO impressions (id_enseignant, id_groupe, id_matiere, date_impression, document, etat, nombre_de_pages) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_IMPRESSION = "UPDATE impressions SET id_enseignant=?, id_groupe=?, id_matiere=?, date_impression=?, document=?, etat=?, nombre_de_pages=? WHERE id=?";
     private static final String DELETE_IMPRESSION = "DELETE FROM impressions WHERE id=?";
     private static final String SELECT_IMPRESSIONS_BY_ENSEIGNANT_ID =
@@ -66,7 +66,7 @@ public class ImpressionDaoImp implements ImpressionDao {
                     Date dateImpression = resultSet.getDate("date_impression");
                     String document = resultSet.getString("document");
                     String etat = resultSet.getString("etat");
-                    int nombreDePages = resultSet.getInt("nombreDePages");
+                    int nombreDePages = resultSet.getInt("nombre_de_pages");
 
 
                     return new Impression(id, idEnseignant, idGroupe, idMatiere, dateImpression, document, etat, nombreDePages);
@@ -85,7 +85,11 @@ public class ImpressionDaoImp implements ImpressionDao {
             statement.setInt(1, impression.getIdEnseignant());
             statement.setInt(2, impression.getIdGroupe());
             statement.setInt(3, impression.getIdMatiere());
-            statement.setDate(4, new java.sql.Date(impression.getDateImpression().getTime()));
+            if (impression.getDateImpression() != null) {
+                statement.setDate(4, new java.sql.Date(impression.getDateImpression().getTime()));
+            } else {
+                statement.setNull(4, java.sql.Types.DATE);
+            }
             statement.setString(5, impression.getDocument());
             statement.setString(6, impression.getEtat());
             statement.setInt(7, impression.getNombreDePages());
@@ -94,6 +98,7 @@ public class ImpressionDaoImp implements ImpressionDao {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public void updateImpression(Impression impression) {
@@ -152,7 +157,7 @@ public class ImpressionDaoImp implements ImpressionDao {
         Date dateImpression = resultSet.getDate("date_impression");
         String document = resultSet.getString("document");
         String etat = resultSet.getString("etat");
-        int nombreDePages = resultSet.getInt("nombreDePages");
+        int nombreDePages = resultSet.getInt("nombre_de_pages");
         String enseignantNom = resultSet.getString("enseignant_nom");
         String groupeNom = resultSet.getString("groupe_nom");
         String matiereNom = resultSet.getString("matiere_nom");

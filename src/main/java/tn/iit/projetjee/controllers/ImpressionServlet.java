@@ -24,9 +24,10 @@ import java.util.UUID;
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10,maxRequestSize = 1024 * 1024 * 20)
 public class ImpressionServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private GroupDao groupDao  ;
+    private GroupDao groupDao;
     private MatiereDao matiereDao;
     private ImpressionDao impressionDao;
+
     public void init() {
         matiereDao = new MatiereDaoImp();
         groupDao = new GroupDaoImp();
@@ -47,7 +48,7 @@ public class ImpressionServlet extends HttpServlet {
 
             if (user != null) {
 
-                int idEnseignant  = user.getUserId();
+                int idEnseignant = user.getUserId();
 
                 List<Group> groups = groupDao.getAllGroups();
 
@@ -70,13 +71,10 @@ public class ImpressionServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-
-
-        int idEnseignant  = user.getUserId();
+        int idEnseignant = user.getUserId();
         int idGroupe = Integer.parseInt(request.getParameter("groupe"));
         int idMatiere = Integer.parseInt(request.getParameter("matiere"));
 
@@ -90,24 +88,25 @@ public class ImpressionServlet extends HttpServlet {
         try {
             dateImpression = dateFormat.parse(dateString);
         } catch (ParseException e) {
-
             e.printStackTrace();
+            response.sendRedirect("addimpression.jsp?error=Invalid date format");
+            return;
+        }
+
+        if (dateImpression == null) {
+            response.sendRedirect("addimpression.jsp?error=Date cannot be null");
+            return;
         }
 
         Part filePart = request.getPart("document");
         String fileName = UUID.randomUUID().toString() + getFileExtension(filePart); // Generate a unique file name
         String uploadPath = getServletContext().getRealPath("/uploads");
         File uploadDir = new File(uploadPath);
-        System.out.println("uploadPath: " + uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs(); // Create the directory if it doesn't exist
         }
 
         String filePath = uploadPath + File.separator + fileName;
-
-        // projectPath = projectPath.substring(0, projectPath.indexOf(".metadata") - 1);
-        // projectPath = projectPath+"/Project_Impression/ImpressionProject/src/main/webapp/assets/uploadimages/";
-
 
         // Save the file to the server
         try (InputStream fileContent = filePart.getInputStream();
@@ -117,26 +116,24 @@ public class ImpressionServlet extends HttpServlet {
             while ((bytesRead = fileContent.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, bytesRead);
             }
-            System.out.println("File saved at: " + filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
         String document = fileName;
-
-
 
         Impression impression = new Impression(0, idEnseignant, idGroupe, idMatiere, dateImpression, document, etat, nombreDePages);
 
-
         impressionDao.addImpression(impression);
         response.sendRedirect("ImpressionListServlet");
-
     }
+
 
     private String getFileExtension(Part part) {
         String fileName = part.getSubmittedFileName();
         return fileName.substring(fileName.lastIndexOf('.'));
     }
+
+
+
 }
